@@ -1,4 +1,4 @@
-package org.seoultech.tableapi.domain.menu.domain;
+package org.seoultech.tableapi.menu.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

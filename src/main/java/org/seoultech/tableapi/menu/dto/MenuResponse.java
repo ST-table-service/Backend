@@ -1,6 +1,6 @@
-package org.seoultech.tableapi.domain.menu.dto;
+package org.seoultech.tableapi.menu.dto;
 
-import org.seoultech.tableapi.domain.menu.domain.Menu;
+import org.seoultech.tableapi.menu.domain.Menu;
 
 public record MenuResponse(
         String restaurantName,

@@ -1,9 +1,9 @@
-package org.seoultech.tableapi.domain.menu.repository;
+package org.seoultech.tableapi.menu.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.seoultech.tableapi.domain.menu.domain.Menu;
+import org.seoultech.tableapi.menu.domain.Menu;
 import org.seoultech.tableapi.domain.menu.domain.QMenu;
 import org.springframework.stereotype.Repository;
 
