@@ -47,7 +47,7 @@ public class Menu extends BaseEntity {
     private List<MenuImage> images;
 
     @OneToMany(mappedBy = "menu")
-    private List<MenuOptions> options;
+    private List<MenuOption> options;
 
     @Builder
     public Menu(Store store,

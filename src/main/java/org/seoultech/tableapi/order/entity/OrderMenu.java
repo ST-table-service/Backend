@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
 import org.seoultech.tableapi.store.entity.Menu;
-import org.seoultech.tableapi.store.entity.MenuImage;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class OrderMenu extends BaseEntity {
     private Boolean isOption;
 
     @OneToMany(mappedBy = "order_menu")
-    private List<OrderMenuOptions> orderMenuOptionsw;
+    private List<OrderMenuOption> orderMenuOptions;
 
     @Builder
     public OrderMenu(Menu menu, Order order, Integer quantity, Integer menuTotalPrice, Boolean isOption) {
