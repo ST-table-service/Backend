@@ -1,6 +1,7 @@
 package org.seoultech.tableapi.order.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
@@ -21,8 +22,15 @@ public class OrderMenuOption extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "menu_option_id", nullable = false)
-    private MenuOption menuOption; // 이 관계로 MenuOptions와 연관시킴
+    private MenuOption menuOption;
 
     @Column(nullable = false)
     private Integer price;
+
+    @Builder
+    public OrderMenuOption(OrderMenu orderMenu, MenuOption menuOption, Integer price) {
+        this.orderMenu = orderMenu;
+        this.menuOption = menuOption;
+        this.price = price;
+    }
 }

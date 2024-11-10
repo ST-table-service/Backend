@@ -37,7 +37,7 @@ public class OrderMenu extends BaseEntity {
     @Column(name = "is_option", nullable = false)
     private Boolean isOption;
 
-    @OneToMany(mappedBy = "order_menu")
+    @OneToMany(mappedBy = "orderMenu")
     private List<OrderMenuOption> orderMenuOptions;
 
     @Builder
