@@ -2,6 +2,7 @@ package org.seoultech.tableapi.store.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
@@ -24,4 +25,11 @@ public class Notice extends BaseEntity {
 
     @Column(nullable = false)
     private String content;
+
+    @Builder
+    public Notice(Store store, String title, String content) {
+        this.store = store;
+        this.title = title;
+        this.content = content;
+    }
 }

@@ -44,6 +44,9 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store")
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "store")
+    private List<Notice> notices;
+
     @Builder
     public Store(User owner, String storeName, Boolean isOpen, LocalDateTime openTime, LocalDateTime closeTime) {
         this.owner = owner;
