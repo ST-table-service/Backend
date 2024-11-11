@@ -7,7 +7,7 @@ import org.seoultech.tableapi.user.exception.UserErrorCode;
 @Getter
 public class CouponException extends GlobalCodeException {
 
-    public CouponException(UserErrorCode errorCode) {
+    public CouponException(CouponErrorCode errorCode) {
         super(errorCode);
     }
 }
