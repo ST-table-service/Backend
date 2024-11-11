@@ -6,6 +6,8 @@ import org.seoultech.tableapi.global.annotation.ExceptionDoc;
 import org.seoultech.tableapi.global.annotation.ExplainError;
 import org.seoultech.tableapi.global.exception.GlobalCodeException;
 import org.seoultech.tableapi.global.interfaces.SwaggerExampleExceptions;
+import org.seoultech.tableapi.pay.exception.StampErrorCode;
+import org.seoultech.tableapi.pay.exception.StampException;
 import org.seoultech.tableapi.user.exception.UserErrorCode;
 import org.seoultech.tableapi.user.exception.UserException;
 
@@ -23,4 +25,7 @@ public class UserInfoExceptionDocs implements SwaggerExampleExceptions {
 
     @ExplainError
     public GlobalCodeException 토큰_유효하지_않음 = new AuthException(AuthErrorCode.INVALID_TOKEN);
+
+    @ExplainError
+    public GlobalCodeException 스탬프_개수_오류 = new StampException(StampErrorCode.STAMP_COUNT_OUT_OF_RANGE);
 }
