@@ -44,12 +44,15 @@ public class SecurityConfig {
         http.httpBasic(httpBasic -> httpBasic.disable());
         // URL별 접근 권한 설정
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/login",
-                        "/api/auth/logout",
-                        "/api/join",
-                        "/api/auth/refresh-token",
+                .requestMatchers(
                         "/swagger-ui/**",
-                        "/v3/api-docs/**").permitAll()
+                        "/v3/api-docs/**",
+                        "api/v1/users/**",
+                        "api/auth/refresh-token",
+                        "/error",
+                        "/test/**",
+                        "/",
+                        "/h2-console/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated());
