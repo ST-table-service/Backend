@@ -18,8 +18,8 @@ public enum UserErrorCode implements BaseErrorCode {
     @ExplainError("비밀번호가 형식에 맞지 않는 경우 발생하는 오류입니다.")
     INVALID_PASSWORD_FORMAT(BAD_REQUEST, "USER_400_2", "비밀번호가 형식에 맞지 않습니다."),
 
-    @ExplainError("비밀번호가 조건과 맞지 않는 경우 발생하는 오류입니다.")
-    PASSWORD_CONSTRAINT_VIOLATION(BAD_REQUEST, "USER_400_3", "비밀번호가 요구 조건에 맞지 않습니다."),
+    @ExplainError("잘못된 형식의 역할이 지정된 경우 발생하는 오류입니다.")
+    INVALID_ROLE_FORMAT(BAD_REQUEST, "USER_400_3", "잘못된 형식의 역할입니다."),
 
     @ExplainError("사용자가 입력한 인증 코드가 전송된 코드와 일치하지 않는 경우 발생하는 오류입니다.")
     INVALID_VERIFICATION_CODE(BAD_REQUEST, "USER_400_4", "인증코드가 일치하지 않습니다."),
