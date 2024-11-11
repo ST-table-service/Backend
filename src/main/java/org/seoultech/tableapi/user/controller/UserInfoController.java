@@ -3,6 +3,7 @@ package org.seoultech.tableapi.user.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.seoultech.tableapi.user.dto.UserCouponResponse;
 import org.seoultech.tableapi.user.dto.UserInfoResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,15 @@ public class UserInfoController {
     public UserInfoResponse info() {
 
         UserInfoResponse response = null;
+
+        return response;
+    }
+
+    @GetMapping("/coupon")
+    @Operation(summary = "회원 쿠폰 정보 조회")
+    public UserCouponResponse couponInfo() {
+
+        UserCouponResponse response = null;
 
         return response;
     }

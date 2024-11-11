@@ -1,49 +1,55 @@
 package org.seoultech.tableapi.user.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Builder
-@AllArgsConstructor
+@Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Schema(description = "회원 마이페이지 정보 응답 DTO")
 public class UserInfoResponse {
-    private String code;
-    private String message;
-    private Data data;
 
-    @Getter
-    @Builder
-    @AllArgsConstructor
-    public static class Data {
-        private UserInfo userInfo;
-        private List<StampInfo> stampInfo;
-        private OrderSummary orderSummary;
-    }
+    @Schema(description = "유저 이름", example = "홍길동")
+    private String username;
 
-    @Getter
-    @Builder
-    @AllArgsConstructor
-    public static class UserInfo {
-        private String username;
-        private Integer totalPaymentLast6Months;
-    }
+    @Schema(description = "최근 6개월 구매금액", example = "19000")
+    private Integer totalPaymentLast6Months;
 
-    @Getter
-    @Builder
-    @AllArgsConstructor
-    public static class StampInfo {
+    @Schema(description = "스탬프 적립 리스트")
+    private List<StampInfo> stampInfo;
+
+    @Schema(description = "나의 주문 횟수(최근 3개월)", example = "3")
+    private Integer recentOrdersCount;
+
+    @Schema(description = "총 주문 금액", example = "50000")
+    private Integer totalPayment;
+
+    @Data
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @Schema(description = "스탬프 적립 정보")
+    public class StampInfo {
+
+        @Schema(description = "식당 이름", example = "바비든든")
         private String storeName;
-        private Integer stampsCollected;
+
+        @Schema(description = "스탬프 적립 개수", example = "5")
+        private int stampsCollected;
+
+        @Builder
+        public StampInfo(String storeName, int stampsCollected) {
+            this.storeName = storeName;
+            this.stampsCollected = stampsCollected;
+        }
     }
 
-    @Getter
     @Builder
-    @AllArgsConstructor
-    public static class OrderSummary {
-        private Integer recentOrdersCount;
-        private Integer totalPayment;
+    public UserInfoResponse(String username, Integer totalPaymentLast6Months, List<StampInfo> stampInfo, Integer recentOrdersCount, Integer totalPayment) {
+        this.username = username;
+        this.totalPaymentLast6Months = totalPaymentLast6Months;
+        this.stampInfo = stampInfo;
+        this.recentOrdersCount = recentOrdersCount;
+        this.totalPayment = totalPayment;
     }
+
 }
