@@ -5,8 +5,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.seoultech.tableapi.auth.exception.AuthException;
 import org.seoultech.tableapi.global.dto.ErrorReason;
 import org.seoultech.tableapi.global.dto.ErrorResponse;
+import org.seoultech.tableapi.user.exception.UserException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -50,6 +52,31 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         // ResponseEntityExceptionHandler의 handleExceptionInternal 메서드를 호출하여 결과를 반환
         return super.handleExceptionInternal(ex, errorResponse, headers, status, request);
     }
+
+    // Auth 사용자 정의 오류 응답 생성
+    @ExceptionHandler(AuthException.class)
+    public ResponseEntity<ErrorResponse> handleAuthException(AuthException ex, HttpServletRequest request) {
+
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(ex.getErrorReason(), request.getRequestURL().toString());
+
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
+
+    // User 사용자 정의 오류 응답 생성
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ErrorResponse> handleMemberException(UserException ex, HttpServletRequest request) {
+
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(ex.getErrorReason(), request.getRequestURL().toString());
+
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
+
 
     //주로 요청 본문이 유효성 검사를 통과하지 못할 때 발생
     @SneakyThrows // 메서드 선언부에 Throws 를 정의하지 않고도, 검사 된 예외를 Throw 할 수 있도록 하는 Lombok 에서 제공하는 어노테이션
