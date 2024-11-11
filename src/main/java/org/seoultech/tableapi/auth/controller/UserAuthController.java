@@ -34,8 +34,8 @@ public class UserAuthController {
     @Operation(summary = "이메일 중복 확인")
     @ApiErrorExceptionsExample(EmailDuplicationExceptionDocs.class)
     public String checkEmailDuplication(
-            @Parameter(description = "이메일", example = "exampe@seoultech.ac.kr")
-            @RequestParam Long useremail) {
+            @Parameter(description = "이메일", example = "example@seoultech.ac.kr")
+            @RequestParam String useremail) {
 
         return "success";
     }
@@ -44,8 +44,8 @@ public class UserAuthController {
     @Operation(summary = "이메일 인증 요청")
     @ApiErrorExceptionsExample(CertifyEmailExceptionDocs.class)
     public String certify(
-            @Parameter(description = "이메일", example = "exampe@seoultech.ac.kr")
-            @RequestParam String email) {
+            @Parameter(description = "이메일", example = "examlpe@seoultech.ac.kr")
+            @RequestParam String useremail) {
         return "success";
     }
 
@@ -53,8 +53,8 @@ public class UserAuthController {
     @Operation(summary = "이메일 인증 코드 확인")
     @ApiErrorExceptionsExample(VerifyEmailExceptionDocs.class)
     public String verify(
-            @Parameter(description = "이메일", example = "exampe@seoultech.ac.kr")
-            @RequestParam String email,
+            @Parameter(description = "이메일", example = "example@seoultech.ac.kr")
+            @RequestParam String useremail,
             @Parameter(description = "인증 코드", example = "123456")
             @RequestParam int codeNumber) {
         return "success";
