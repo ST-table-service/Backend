@@ -28,7 +28,11 @@ public enum StampErrorCode implements BaseErrorCode {
     DUPLICATE_STAMP_ATTEMPT(BAD_REQUEST, "STAMP_400_5", "이미 적립된 결제 건입니다."),
 
     @ExplainError("스탬프 적립 중 시스템 오류가 발생한 경우 발생하는 오류입니다.")
-    STAMP_SYSTEM_ERROR(BAD_REQUEST, "STAMP_400_6", "스탬프 적립 중 시스템 오류가 발생했습니다.");
+    STAMP_SYSTEM_ERROR(BAD_REQUEST, "STAMP_400_6", "스탬프 적립 중 시스템 오류가 발생했습니다."),
+
+    @ExplainError("스탬프 개수가 허용 범위(0~10)를 벗어난 경우 발생하는 오류입니다.")
+    STAMP_COUNT_OUT_OF_RANGE(BAD_REQUEST, "STAMP_400_7", "스탬프 개수가 허용 범위를 초과하거나 미달했습니다.");
+
 
     private final Integer status;
     private final String code;
