@@ -38,7 +38,7 @@ public class UserCouponResponse {
     @Data
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @Schema(description = "쿠폰 유효기간")
-    public class ValidityPeriod {
+    public static class ValidityPeriod {
 
         @Schema(description = "시작일", example = "2024-10-01")
         private String startDate;

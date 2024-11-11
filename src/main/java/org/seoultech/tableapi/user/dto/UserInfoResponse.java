@@ -28,7 +28,7 @@ public class UserInfoResponse {
     @Data
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @Schema(description = "스탬프 적립 정보")
-    public class StampInfo {
+    public static class StampInfo {
 
         @Schema(description = "식당 이름", example = "바비든든")
         private String storeName;
