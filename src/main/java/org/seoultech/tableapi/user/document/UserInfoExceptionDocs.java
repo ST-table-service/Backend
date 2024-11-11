@@ -28,4 +28,10 @@ public class UserInfoExceptionDocs implements SwaggerExampleExceptions {
 
     @ExplainError
     public GlobalCodeException 스탬프_개수_오류 = new StampException(StampErrorCode.STAMP_COUNT_OUT_OF_RANGE);
+
+    @ExplainError
+    public GlobalCodeException 존재하지_않는_가게_스탬프 = new StampException(StampErrorCode.STORE_NOT_FOUND);
+
+    @ExplainError
+    public GlobalCodeException 스탬프_정보_조회_오류 = new StampException(StampErrorCode.STAMP_DATA_INCONSISTENCY);
 }
