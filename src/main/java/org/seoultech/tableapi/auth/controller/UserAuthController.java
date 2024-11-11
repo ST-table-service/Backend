@@ -38,13 +38,19 @@ public class UserAuthController {
 
     @PostMapping("/certify")
     @Operation(summary = "이메일 인증 요청")
-    public String certify(@RequestParam String email) {
+    public String certify(
+            @Parameter(description = "이메일", example = "exampe@seoultech.ac.kr")
+            @RequestParam String email) {
         return "success";
     }
 
     @PostMapping("/verify")
     @Operation(summary = "이메일 인증 코드 확인")
-    public String verify(@RequestParam String email) {
+    public String verify(
+            @Parameter(description = "이메일", example = "exampe@seoultech.ac.kr")
+            @RequestParam String email,
+            @Parameter(description = "인증 코드", example = "123456")
+            @RequestParam int codeNumber) {
         return "success";
     }
 
@@ -70,11 +76,6 @@ public class UserAuthController {
         }
     }
 
-    @PostMapping("/email-check")
-    @Operation(summary = "인증된 이메일인지 확인")
-    public String checkEmail(@RequestParam String email) {
-        return "success";
-    }
 
     @DeleteMapping
     @Operation(summary = "회원 탈퇴")

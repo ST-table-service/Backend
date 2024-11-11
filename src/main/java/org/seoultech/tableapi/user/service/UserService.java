@@ -1,6 +1,6 @@
 package org.seoultech.tableapi.user.service;
 
-import org.seoultech.tableapi.user.dto.JoinRequest;
+import org.seoultech.tableapi.auth.dto.RegisterRequest;
 import org.seoultech.tableapi.user.entity.Role;
 import org.seoultech.tableapi.user.entity.User;
 import org.seoultech.tableapi.user.repository.UserRepository;
@@ -17,11 +17,11 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(JoinRequest joinRequest) {
-        String encodedPassword = passwordEncoder.encode(joinRequest.getPassword());
+    public void register(RegisterRequest registerRequest) {
+        String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
         User user = User.builder()
-                .useremail(joinRequest.getUseremail())
-                .username(joinRequest.getUsername())
+                .useremail(registerRequest.getUseremail())
+                .username(registerRequest.getUsername())
                 .password(encodedPassword)
                 .role(Role.ADMIN)
                 .build();

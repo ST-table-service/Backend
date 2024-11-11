@@ -5,8 +5,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.seoultech.tableapi.user.entity.Role;
 
+@Getter
+@AllArgsConstructor
 public class RegisterRequest {
 
     @NotNull
@@ -20,5 +24,9 @@ public class RegisterRequest {
     @NotNull
     @Schema(description = "비밀번호", example="password1234!")
     private String password;
+
+    @NotNull
+    @Schema(description = "권한", example = "USER")
+    private Role role;
 
 }
