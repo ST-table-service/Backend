@@ -9,7 +9,7 @@ import org.seoultech.tableapi.user.exception.UserException;
 
 
 @ExceptionDoc
-public class UserEmailExceptionDocs implements SwaggerExampleExceptions {
+public class EmailDuplicationExceptionDocs implements SwaggerExampleExceptions {
 
     @ExplainError
     public GlobalCodeException 이미_등록된_이메일 = new UserException(UserErrorCode.EMAIL_ALREADY_REGISTERED);
