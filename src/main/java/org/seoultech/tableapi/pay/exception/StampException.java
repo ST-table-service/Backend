@@ -7,7 +7,7 @@ import org.seoultech.tableapi.user.exception.UserErrorCode;
 @Getter
 public class StampException extends GlobalCodeException {
 
-    public StampException(UserErrorCode errorCode) {
+    public StampException(StampErrorCode errorCode) {
         super(errorCode);
     }
 }
