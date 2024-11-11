@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.seoultech.tableapi.auth.exception.AuthException;
 import org.seoultech.tableapi.global.dto.ErrorReason;
 import org.seoultech.tableapi.global.dto.ErrorResponse;
+import org.seoultech.tableapi.pay.exception.CouponException;
+import org.seoultech.tableapi.pay.exception.StampException;
 import org.seoultech.tableapi.user.exception.UserErrorCode;
 import org.seoultech.tableapi.user.exception.UserException;
 import org.springframework.http.HttpHeaders;
@@ -78,6 +80,29 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(errorResponse);
     }
 
+    // Stamp 사용자 정의 오류 응답 생성
+    @ExceptionHandler(StampException.class)
+    public ResponseEntity<ErrorResponse> handleStampException(StampException ex, HttpServletRequest request) {
+
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(ex.getErrorReason(), request.getRequestURL().toString());
+
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
+
+    // Coupon 사용자 정의 오류 응답 생성
+    @ExceptionHandler(CouponException.class)
+    public ResponseEntity<ErrorResponse> handleCouponException(CouponException ex, HttpServletRequest request) {
+
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(ex.getErrorReason(), request.getRequestURL().toString());
+
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
 
     //주로 요청 본문이 유효성 검사를 통과하지 못할 때 발생
     @SneakyThrows // 메서드 선언부에 Throws 를 정의하지 않고도, 검사 된 예외를 Throw 할 수 있도록 하는 Lombok 에서 제공하는 어노테이션
