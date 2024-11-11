@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.seoultech.tableapi.auth.exception.AuthException;
 import org.seoultech.tableapi.global.dto.ErrorReason;
 import org.seoultech.tableapi.global.dto.ErrorResponse;
+import org.seoultech.tableapi.user.exception.UserErrorCode;
 import org.seoultech.tableapi.user.exception.UserException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -93,6 +94,32 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ServletWebRequest servletWebRequest = (ServletWebRequest)request;
         HttpServletRequest httpServletRequest = servletWebRequest.getRequest();
         String url = httpServletRequest.getRequestURL().toString();
+
+        String firstErrorMessage = errors.getFirst().getDefaultMessage();
+
+        // 이메일 형식 잘못 입력한 경우
+        if (firstErrorMessage.equals("INVALID_EMAIL")) {
+            UserErrorCode errorCode = UserErrorCode.INVALID_EMAIL;
+            UserException memberException = new UserException(errorCode);
+
+            ErrorReason reason = memberException.getErrorReason();
+            ErrorResponse errorResponse = new ErrorResponse(reason, url);
+
+            return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                    .body(errorResponse);
+        }
+
+        // 비밀번호 형식 잘못 입력한 경우
+        if (firstErrorMessage.equals("INVALID_PASSWORD")) {
+            UserErrorCode errorCode = UserErrorCode.INVALID_PASSWORD_FORMAT;
+            UserException memberException = new UserException(errorCode);
+
+            ErrorReason reason = memberException.getErrorReason();
+            ErrorResponse errorResponse = new ErrorResponse(reason, url);
+
+            return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                    .body(errorResponse);
+        }
 
         // stream을 사용해 FieldError 객체 리스트에서 필드 이름과 해당 오류 메시지를 맵으로 변환
         Map<String, Object> fieldAndErrorMessages =
