@@ -6,6 +6,8 @@ import org.seoultech.tableapi.global.annotation.ExceptionDoc;
 import org.seoultech.tableapi.global.annotation.ExplainError;
 import org.seoultech.tableapi.global.exception.GlobalCodeException;
 import org.seoultech.tableapi.global.interfaces.SwaggerExampleExceptions;
+import org.seoultech.tableapi.pay.exception.CouponErrorCode;
+import org.seoultech.tableapi.pay.exception.CouponException;
 import org.seoultech.tableapi.user.exception.UserErrorCode;
 import org.seoultech.tableapi.user.exception.UserException;
 
@@ -24,4 +26,6 @@ public class UserCoupomExceptionDocs implements SwaggerExampleExceptions {
     @ExplainError
     public GlobalCodeException 토큰_유효하지_않음 = new AuthException(AuthErrorCode.INVALID_TOKEN);
 
+    @ExplainError
+    public GlobalCodeException 쿠폰_정보_조회_오류 = new CouponException(CouponErrorCode.COUPON_DATA_INCONSISTENCY);
 }
