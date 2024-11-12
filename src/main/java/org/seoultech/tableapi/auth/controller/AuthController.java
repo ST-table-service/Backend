@@ -21,24 +21,6 @@ public class AuthController {
 
     private final RefreshTokenService refreshTokenService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
-        try {
-            authService.login(loginRequest, response);
-            return ResponseEntity.ok("Login successful");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed: " + e.getMessage());
-        }
-    }
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            authService.logout(request, response);
-            return ResponseEntity.ok("Logout successful");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Logout failed: " + e.getMessage());
-        }
-    }
     @PostMapping("/refresh-token")
     public ResponseEntity<?> reissue(HttpServletRequest request, HttpServletResponse response) {
         try {
