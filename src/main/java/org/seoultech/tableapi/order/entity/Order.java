@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
+import org.seoultech.tableapi.global.generic.Money;
+import org.seoultech.tableapi.global.generic.MoneyConverter;
 import org.seoultech.tableapi.store.entity.MenuImage;
 import org.seoultech.tableapi.store.entity.Store;
 import org.seoultech.tableapi.user.entity.User;
@@ -30,14 +32,16 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
+    @Convert(converter = MoneyConverter.class)
     @Column(name = "total_price", nullable = false)
-    private Integer totalPrice;
+    private Money totalPrice;
 
     @Column(name = "discount")
     private Integer discount;
 
+    @Convert(converter = MoneyConverter.class)
     @Column(name = "total_payment", nullable = false)
-    private Integer totalPayment;
+    private Money totalPayment;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
@@ -53,7 +57,7 @@ public class Order extends BaseEntity {
     private List<OrderMenu> orderMenus;
 
     @Builder
-    public Order(User user, Store store, Integer totalPrice, Integer discount, Integer totalPayment, OrderStatus orderStatus, LocalDateTime payedAt, LocalDateTime endAt) {
+    public Order(User user, Store store, Money totalPrice, Integer discount, Money totalPayment, OrderStatus orderStatus, LocalDateTime payedAt, LocalDateTime endAt) {
         this.user = user;
         this.store = store;
         this.totalPrice = totalPrice;

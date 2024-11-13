@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
+import org.seoultech.tableapi.global.generic.Money;
+import org.seoultech.tableapi.global.generic.MoneyConverter;
 
 import java.util.List;
 
@@ -31,8 +33,9 @@ public class Menu extends BaseEntity {
     @Column(name = "is_popular", nullable = false)
     private Boolean isPopular;
 
+    @Convert(converter = MoneyConverter.class)
     @Column(nullable = false)
-    private Integer price;
+    private Money price;
 
     @Column(name = "is_available", nullable = false)
     private Boolean isAvailable;
@@ -54,7 +57,7 @@ public class Menu extends BaseEntity {
                 String menuName,
                 Boolean isBest,
                 Boolean isPopular,
-                Integer price,
+                Money price,
                 Boolean isAvailable,
                 Integer orderCount,
                 String description) {

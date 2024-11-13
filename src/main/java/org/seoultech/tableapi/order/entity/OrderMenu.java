@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.seoultech.tableapi.common.entity.BaseEntity;
+import org.seoultech.tableapi.global.generic.Money;
+import org.seoultech.tableapi.global.generic.MoneyConverter;
 import org.seoultech.tableapi.store.entity.Menu;
 
 import java.util.List;
@@ -31,8 +33,9 @@ public class OrderMenu extends BaseEntity {
     @Column(nullable = false)
     private Integer quantity;
 
+    @Convert(converter = MoneyConverter.class)
     @Column(name = "menu_total_price", nullable = false)
-    private Integer menuTotalPrice;
+    private Money menuTotalPrice;
 
     @Column(name = "is_option", nullable = false)
     private Boolean isOption;
@@ -41,7 +44,7 @@ public class OrderMenu extends BaseEntity {
     private List<OrderMenuOption> orderMenuOptions;
 
     @Builder
-    public OrderMenu(Menu menu, Order order, Integer quantity, Integer menuTotalPrice, Boolean isOption) {
+    public OrderMenu(Menu menu, Order order, Integer quantity, Money menuTotalPrice, Boolean isOption) {
         this.menu = menu;
         this.order = order;
         this.quantity = quantity;
